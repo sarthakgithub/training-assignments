@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="getter()">
+
+    <label>Username</label>
+    <input type="text" name="myusername" id="username"/>
+    <label>Password</label>
+    <input type="password" name="mypassword" id="password">
+    <input type="checkbox" id="myCheck" onclick="storeValue()">Remember Me</input>
+    <input type="button" value="get" onclick="getter()">
+</form>
+<script>
+    function storeValue(){
+        var usernameKey = document.getElementById('username').value;
+        var passwordKey = document.getElementById('password').value;
+        var checkedKey = document.getElementById('myCheck').checked;
+        localStorage.setItem("usernameKey", usernameKey);
+        localStorage.setItem("passwordKey", passwordKey);
+        localStorage.setItem("valueChecked", checkedKey);
+    }
+
+
+    function getter(){
+
+        if(localStorage.getItem("valueChecked")){
+
+            var userkey = localStorage.getItem("usernameKey");
+            var userpassword = localStorage.getItem("passwordKey");
+            document.getElementById('username').value = userkey;
+            document.getElementById('password').value = userpassword;
+        }
+    }
+</script>
+</body>
+</html>

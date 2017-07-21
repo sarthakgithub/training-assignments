@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1, #div2 {
+            float: left;
+            width: 100px;
+            height: 150px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        #div2{
+            height: 500px;
+        }
+        .item{
+            height:20px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="item" draggable="true" ondragstart="drag(event)" id="drag1" value="1">item1</div>
+    <div class="item" draggable="true" ondragstart="drag(event)" id="drag2" value="2">item2</div>
+    <div class="item" draggable="true" ondragstart="drag(event)" id="drag3" value="3">item3</div>
+    <div class="item" draggable="true" ondragstart="drag(event)" id="drag4" value="4">item4</div>
+</div>
+
+<div id="div2" class="cartDiv" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<script>
+    var sum = 0;
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        if(ev.target.id== "div2"){
+            sum+= parseInt(document.getElementById(data).getAttribute('value'));
+        }else{
+            sum-= parseInt(document.getElementById(data).getAttribute('value'));
+        }
+        console.log(sum);
+    }
+</script>
+
+
+</body>
+</html>

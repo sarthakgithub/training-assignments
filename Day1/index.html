@@ -1,0 +1,70 @@
+<<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HTML5 Types</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <form>
+            <label>Text</label>
+            <input type="text" name=""/>
+            <label>Number</label>
+            <input type="number" name=""/>
+            <label>Color</label>
+            <input type="color" name=""/>
+            <label>Date</label>
+            <input type="date" name=""/>
+            <label>Time</label>
+            <input type="time" name="" required/>
+            <label>Range</label>
+            <input type="range" name=""/>
+            <label>Email</label>
+            <input type="email" name=""/>
+            <label>Url</label>
+            <input type="url" name=""/>
+            <button type="submit">SUBMIT ME</button>
+        </form>
+        <div id="droppableContainer" ondragover="allowDrop(event)" style="background-color: pink; height: 220px; width: 220px;" ondrop="drop(event)"></div>
+        <div id="draggableObject" draggable="true" style="background-color: blue; height: 110px; width: 110px;" ondragstart="startDrag(event)"></div>
+        <script src="node_modules/nodep-date-input-polyfill/nodep-date-input-polyfill.dist.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script>
+            if(Modernizr.inputtypes.date) {
+                console.log("Yes");
+            } else {
+                console.log("No");
+            }
+            if(Modernizr.geolocation) {
+                function geoSuccess(position) {
+                    console.log("Position is: " + position.coords.latitude + " " + position.coords.longitude);
+                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var geoCoder = new google.maps.Geocoder();
+                    geoCoder.geocode({ 'latLng': latlng }, function (results, status) {
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            if(results[1]) {
+                                console.log("Location: " + results[1].formatted_address);
+                            }
+                        }
+                    });
+                }
+                function geoFail(error) {
+                    console.log("Error is: " + error);
+                }
+                navigator.geolocation.getCurrentPosition(geoSuccess, geoFail);
+            }
+            function startDrag(event) {
+                event.dataTransfer.setData("text", event.target.id);
+            }
+            function drop(ev) {    
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById('draggableObject'));
+            }
+            function allowDrop(ev) {
+                ev.preventDefault();
+                console.log(ev.dataTransfer);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="file" id="file_upload">
+
+<script>
+    var file_upload = document.getElementById('file_upload');
+    file_upload.addEventListener('change',function(){
+        var files = this.files;
+        if(files[0].type.match('image')){
+            readFile(files[0]);
+        }
+    })
+
+    function readFile(file){
+        var reader = new FileReader();
+        reader.onload  = function(e){
+            var image_content = e.target.result;
+            var img = document.createElement('img');
+            img.src = image_content;
+            document.body.appendChild(img)
+        }
+        reader.readAsDataURL(file);
+
+    }
+
+    var xhr = new XMLHttpRequest()
+    var f=document.getElementById("file_upload");
+        f.addEventListener('change',function() {
+            var formData = new FormData();
+            formData.append("myFile", document.getElementById("file_upload").files[0]);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000/post");
+            xhr.send(formData);
+    });
+
+</script>
+
+
+</body>
+</html>
