@@ -1,0 +1,14 @@
+.rowElements{
+	height: 100%;
+    display: inline-block;
+    width: 100%;
+}
+.colElements {
+    padding:10px;
+    margin:10px;
+    border:1px solid black;
+    float:left;
+}
+#basicTable{
+    display: inline-block;
+}
