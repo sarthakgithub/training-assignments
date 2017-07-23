@@ -1,5 +1,5 @@
 #wrapper{
-    height: 300px;
+    height: 200px;
     width: 300px;
     border: 1px solid black;
     position: relative;
@@ -23,9 +23,11 @@
 
 .items{
     background: grey;
+    height: 100%;
 }
 
 #date-nav-prev,#date-nav-next{
+    color: white;
     width: 50px;
     margin: 0 auto;
     font-size: 50px;
