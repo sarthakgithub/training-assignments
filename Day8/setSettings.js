@@ -1,89 +1,92 @@
-//var state = {
-//    a : {
-//        b : {
-//            c: 2
-//        },
-//        f : {}
-//    }
-//}
-//
-//
-//function setSettings(path,value){
-//    var pathArray = path.split('/');
-//    for(var i in state){
-//        if(state.hasOwnProperty(i)){
-//
-//        }
-//
-//    }
-//}
-//
-//setSettings("a/b/c",3);
-
-function ObjectTrie(){
-
+var state = {
+   a : {
+       b : {
+           c: 2
+       },
+       f : {}
+   }
 }
 
-ObjectTrie.prototype.setSetting = setSetting;
-var obj = new ObjectTrie();
 
-var objNormal = {};
-
-
-
-function setSetting(pathInArr , value , canReset){
-
-    var obj = new ObjectTrie();
-
-
-
-    if(pathInArr.length === 0){
-        return value;
-    }
-
-    if(! (pathInArr[0] in this))  {
-        obj[pathInArr[0]] = new ObjectTrie();
-        obj[pathInArr[0]] = obj[pathInArr[0]].setSetting(pathInArr.splice(1) , value , canReset);
-
-    }
-    else{
-        var temp = this[pathInArr[0]];
-        if(typeof temp === "number"){
-            if(canReset){
-                temp = new ObjectTrie();
-            }
-            else{
-                throw "Cannot Add";
-            }
-
-        }
-
-        obj[pathInArr[0]] = temp.setSetting(pathInArr.splice(1) , value , canReset);
-
-    }
-
-    for (var prop in this) {
-        // skip loop if the property is from prototype
-        if(!this.hasOwnProperty(prop)) continue;
-
-        // your code
-        if(prop == pathInArr[0]){
-            continue;
-        }
-        obj[prop] = this[prop];
-    }
-
-
-    return obj;
-
+function setSettings(pathArray,value){
+   var pathArrayLength = pathArray.length;
+   var lastelement  = pathArray.pop();
+   var Obj = {};
+   Obj[lastelement] = value;
+   if(pathArrayLength>1){
+        setSettings(pathArray,Obj);
+   }
+   else{
+        console.log(Obj);
+   }   
 }
 
-ObjectTrie.prototype.setSetting = setSetting;
+setSettings(['a','b','c','d'],3);
+
+// function ObjectTrie(){
+
+// }
+
+// ObjectTrie.prototype.setSetting = setSetting;
+// var obj = new ObjectTrie();
+
+// var objNormal = {};
 
 
-var obj1 = new ObjectTrie();
 
-var obj2 = obj1.setSetting(["A","b"] , 20);
+// function setSetting(pathInArr , value , canReset){
+
+//     var obj = new ObjectTrie();
+
+
+
+//     if(pathInArr.length === 0){
+//         return value;
+//     }
+
+//     if(! (pathInArr[0] in this))  {
+//         obj[pathInArr[0]] = new ObjectTrie();
+//         obj[pathInArr[0]] = obj[pathInArr[0]].setSetting(pathInArr.splice(1) , value , canReset);
+
+//     }
+//     else{
+//         var temp = this[pathInArr[0]];
+//         if(typeof temp === "number"){
+//             if(canReset){
+//                 temp = new ObjectTrie();
+//             }
+//             else{
+//                 throw "Cannot Add";
+//             }
+
+//         }
+
+//         obj[pathInArr[0]] = temp.setSetting(pathInArr.splice(1) , value , canReset);
+
+//     }
+
+//     for (var prop in this) {
+//         // skip loop if the property is from prototype
+//         if(!this.hasOwnProperty(prop)) continue;
+
+//         // your code
+//         if(prop == pathInArr[0]){
+//             continue;
+//         }
+//         obj[prop] = this[prop];
+//     }
+
+
+//     return obj;
+
+// }
+
+// ObjectTrie.prototype.setSetting = setSetting;
+
+
+// var obj1 = new ObjectTrie();
+
+// var obj2 = obj1.setSetting(["A","b"] , 20);
 
 // var obj3 = obj2.setSetting(["A" , "C"] , 30);
 
