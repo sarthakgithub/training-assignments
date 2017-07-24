@@ -1,0 +1,42 @@
+<script>
+
+var observer = (function(){
+    var array=[];
+
+    var subscribe = function subscribe(arg) {
+        array.push(arg);
+    }
+    var unsubscribe = function unsubscribe(name) {
+        array.pop(name);
+
+    }
+    var fire = function() {
+        array.forEach(function(currentValue, index, arr){
+            array[index]();
+        })
+    }
+
+    return {
+        subscribe : subscribe,
+        unsubscribe : unsubscribe,
+        fire : fire
+    };
+})();
+var test = {
+    testFunc1: function() {
+        console.log('a');
+    }
+}
+observer.subscribe(test.testFunc1)
+
+observer.subscribe(function(){
+    console.log('b');
+})
+observer.fire()
+observer.unsubscribe(test.testFunc1);
+observer.subscribe(function(){
+    console.log('c');
+})
+observer.fire()
+
+</script>
