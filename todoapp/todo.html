@@ -5,22 +5,26 @@
     <title>Title</title>
     <style>
         #myList{
-            height: 200px;
-            width: 100px;
+            height:200px;
+            width: 300px;
             border: 1px solid black;
+            position: relative;
+        }
+        .closeBtn{
+            position: absolute;
+            right:0;
+            display: inline-block;
         }
     </style>
+
 </head>
 <body>
-    <form id="task-form">
+    <input type="text" value="" name="inputBox" id="inputVal"  onkeypress="mytodo.enterPressed(event)">
+    <input type="button" value="add" id="add">
 
-        <input type="text" name="inputvalue" id="inputText"/>
-        <input type="button" value="add" id="addButton">
+    <div id="myList">
 
-        <div id="myList">
-
-        </div>
-    </form>
+    </div>
     <script src="todo.js"></script>
 </body>
 </html>
