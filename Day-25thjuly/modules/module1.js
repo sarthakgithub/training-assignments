@@ -8,3 +8,7 @@
 //export function myId(){
 //    console.log(myobj.a);
 //}
+
+export function square(num){
+    return num*num;
+}

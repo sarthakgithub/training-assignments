@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
+
     <script>
         "use strict"
+
         //let x=1;
         //console.log(x);
 //        const x =230;
@@ -300,13 +303,13 @@
 //                //console.log('in promise code');
 //                setTimeout(function(){
 //                    //console.log('resolving');
-//                    resolve('b');
-//                    //reject('some error');
+//                    //resolve('b');
+//                    reject('some error');
 //                },5000)
 //            });
-//
-//            Promise.all([p1,p2]).then(function(value){console.log('ok' + value)},function(reason){console.log('nope')})
-            //Promise.race([p1,p2]).then(function(value){console.log('ok')},function(reason){console.log('nope')})
+
+            //Promise.all([p1,p2]).then(function(value){console.log(value)},function(reason){console.log('nope')})
+            //Promise.race([p1,p2]).then(function(value){console.log(value)},function(reason){console.log('nope')})
 //        function doAsync(){
 //            let p = new Promise(function(resolve,reject){
 //                setTimeout(function(){
@@ -324,42 +327,141 @@
 //        })
 //
 //         class creation
-        class Person{
-            constructor(){
-                console.log('parent constructor called');
-                //this.name = name;//property declaration
-            }
-            showId(){
-                console.log('parent created class');
-            }
-        }
+//        class Person{
+//            constructor(){
+//                console.log('parent constructor called');
+//                //this.name = name;//property declaration
+//            }
+//            showId(){
+//                console.log('parent created class');
+//            }
+//        }
+//
+//        class child extends Person{
+//
+//            constructor(){
+//                super()
+//                console.log('child constructor called');
+//            }
+//
+//            showId(){
+//                super.showId();
+//                console.log('child created class');
+//            }
+//        }
+//        var c = new child();
+//        console.log(c.showId())
+//
+//        class Project{
+//            static getDefault(){
+//                return 0;
+//            }
+//        }
 
-        class child extends Person{
-
-            constructor(){
-                super()
-                console.log('child constructor called');
-            }
-
-            showId(){
-                super.showId();
-                console.log('child created class');
-            }
-        }
-        var c = new child();
-        console.log(c.showId())
-
-        class Project{
-            static getDefault(){
-                return 0;
-            }
-        }
-
-        console.log(Project.getDefault());
+        //console.log(Project.getDefault());
         //var p = new Person();
         //p.showId();
         //console.log(Person.prototype);
         //console.log(p.showId() == Person.prototype.showId())
+
+//        function foo(who){this.me = who;}
+//
+//        foo.prototype.identify = function(){
+//            return "this me" + this.me;
+//        }
+//        function bar(who){
+//            foo.call(this,who);
+//        }
+//        bar.prototype = Object.create(foo.prototype);
+//
+//        bar.prototype.speak = function(){
+//            console.log('calling identify' + this.identify());
+//        }
+//
+//        var b1 = new bar('b1');
+//        var b2 = new bar('b2');
+//
+//        b1.speak();
+//        b2.speak();
+
+        //creating singleton class using revealing module pattern
+//        var x = (function(){
+//            var instance;
+//
+//            function createInstance(){
+//                return {};
+//            }
+//
+//            return{
+//                getInstance : function(){
+//                    if(!instance){
+//                        createInstance();
+//                    }
+//                    return instance;
+//                }
+//            }
+//        })();
+
+        //iterator function that will return 10 number as square
+
+
+//                let idMake =  {
+//                    [Symbol.iterator](fn,count){
+//                        var init = 0,number;
+//                        return{
+//                            next(){
+//                                if(init>=count){
+//                                    return{
+//                                        done:true,
+//                                        value:undefined
+//                                    }
+//                                }else{
+//                                    init++;
+//                                    number = fn(init);
+//                                    return{
+//                                        value:number,
+//                                        done:false
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                function square(num){
+//                    return num*num;
+//                }
+//
+//                let it = idMake[Symbol.iterator](square,10);
+//                console.log(it.next());
+//                console.log(it.next());
+//                console.log(it.next());
+
+            //Generator function that will return 10 number as square
+
+//                function square(num){
+//                    return num*num;
+//                }
+//
+//                function* squareGenerator(fn,count){
+//                    for(let i=1;i<count;i++){
+//                        yield  fn(i);
+//                    }
+//                }
+//                let it = squareGenerator(square,10);
+//                console.log(it.next());
+//                console.log(it.next());
+//                console.log(it.next());
+
+//            function square(){
+//                console.log(this);
+//            }
+//            square();
+
+    //        var square = () => {
+    //            console.log(this);
+    //        }
+    //        square();
 
 
 

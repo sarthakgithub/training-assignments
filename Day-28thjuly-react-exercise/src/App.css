@@ -1,0 +1,37 @@
+.AppLogo {
+    width: 100px;
+    display: inline-block;
+}
+
+.MyApp{
+    width: 30%;
+    margin: 0 auto;
+    position: relative;
+    height:300px;
+    border: 1px solid black;
+}
+.navBar{
+    display: inline-block;
+    height: 100px;
+    width: 50%;
+    position: relative;
+}
+.navBarTabLinks{
+    display: inline-block;
+}
+
+.navLinks{
+    display: inline-block;
+    height: 50px;
+    width: 80px;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 15px;
+}
+.SubmenuHome,.SubmenuAbout,.SubmenuTopic ul{
+    position: absolute;
+    left:0;
+}
+.footer{
+    text-align: center;
+}

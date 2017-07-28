@@ -8,11 +8,13 @@
 //myId()
 
 
-class Person{
-    showId(){
-        console.log('created class');
-    }
-}
-
-var p = new Person();
-p.showId();
+//class Person{
+//    showId(){
+//        console.log('created class');
+//    }
+//}
+//
+//var p = new Person();
+//p.showId();
+import {square} from './modules/module1.js';
+console.log(square(5));
