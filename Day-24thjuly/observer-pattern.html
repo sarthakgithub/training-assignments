@@ -7,7 +7,11 @@ var observer = (function(){
         array.push(arg);
     }
     var unsubscribe = function unsubscribe(name) {
-        array.pop(name);
+        array.filter(function(item){    
+            if(item!=name){
+                return item;
+            }
+        })
 
     }
     var fire = function() {
@@ -22,18 +26,23 @@ var observer = (function(){
         fire : fire
     };
 })();
-var test = {
-    testFunc1: function() {
-        console.log('a');
-    }
-}
-observer.subscribe(test.testFunc1)
-
+// var test = {
+//     testFunc1: function() {
+//         console.log('a');
+//     }
+// }
+//observer.subscribe(test.testFunc1)
+observer.subscribe(function(){
+    console.log('a');
+})
 observer.subscribe(function(){
     console.log('b');
 })
 observer.fire()
-observer.unsubscribe(test.testFunc1);
+observer.unsubscribe(function(){
+    console.log('a');
+});
+
 observer.subscribe(function(){
     console.log('c');
 })

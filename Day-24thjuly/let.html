@@ -15,24 +15,24 @@
 //        }
 //        console.log(x);
 
-//        function updateData(){
-//            data=12;
-//        }
-//        let data=null;
-//        updateData();
-//        console.log(data);
+       // function updateData(){
+       //     data=12;
+       // }
+       // let data=null;
+       // updateData();
+       // console.log(data);
 
         //arrow function
 //        var getPi = () => 3.14;
 //        console.log(typeof getPi);
 //        document.addEventListener('click',function(){console.log(this)})
 //        document.addEventListener('click',() => console.log(this));
-//        var obj = {
-//            testFunc1 : function() {
-//                return document.addEventListener('click',() => console.log(this));
-//            }
-//        }
-//        obj.testFunc1();
+       // var obj = {
+       //     testFunc1 : function() {
+       //         return document.addEventListener('click',() => console.log(this));
+       //     }
+       // }
+       // obj.testFunc1();
 
         //default parameters
 //
@@ -88,9 +88,9 @@
 //        processInvoice `Invoice:${invoicenum}for${amount}`;
 
         //how to create symbol : in this case refernce will not be same
-//        let eventSymbol = Symbol('resizeevent');
-//        console.log(typeof eventSymbol);
-//        console.log(eventSymbol.toString());
+       // let eventSymbol = Symbol('resizeevent');
+       // console.log(typeof eventSymbol);
+       // console.log(eventSymbol.toString());
 
         //In this case reference will be same
 //        let s = Symbol.for('event');
@@ -146,48 +146,48 @@
 //        console.log(it.next());
 
         //custom implementation of iterators
-        let idMake = {
-           [Symbol.iterator](fn,count){
-            var init =0;
-            return{
-                next(){
-                    init++;
-                    if(init >count){
-                        return {
-                            done:true,
-                            value:init
-                        }
-                    }
-                    else{
-                        while(!fn(init)){
-                            init++
-                        }
-                        return{
-                            value:init,
-                            done:false
-                        }
-                    }
-                }
-            }
-            }
-        };
+        // let idMake = {
+        //    [Symbol.iterator](fn,count){
+        //     var init =0;
+        //     return{
+        //         next(){
+        //             init++;
+        //             if(init >count){
+        //                 return {
+        //                     done:true,
+        //                     value:init
+        //                 }
+        //             }
+        //             else{
+        //                 while(!fn(init)){
+        //                     init++
+        //                 }
+        //                 return{
+        //                     value:init,
+        //                     done:false
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     }
+        // };
 
-        function even(nextid){
-            return nextid%2 ===0;
-        }
+        // function even(nextid){
+        //     return nextid%2 ===0;
+        // }
 
-        function odd(nextid){
-            return nextid%2 !=0
-        }
+        // function odd(nextid){
+        //     return nextid%2 !=0
+        // }
 
-        let it = idMake[Symbol.iterator](even,10);
-        console.log(it.next())
-        console.log(it.next())
-        console.log(it.next())
-        let it2 = idMake[Symbol.iterator](odd,10);
-        console.log(it2.next())
-        console.log(it2.next())
-        console.log(it2.next())
+        // let it = idMake[Symbol.iterator](even,10);
+        // console.log(it.next())
+        // console.log(it.next())
+        // console.log(it.next())
+        // let it2 = idMake[Symbol.iterator](odd,10);
+        // console.log(it2.next())
+        // console.log(it2.next())
+        // console.log(it2.next())
 
 
     </script>
