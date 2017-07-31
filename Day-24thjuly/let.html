@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+    <script>
+        "use strict"
+
+        //let x=1;
+        //console.log(x);
+//        const x =230;
+//        {
+//            const x=123;
+//        }
+//        console.log(x);
+
+//        function updateData(){
+//            data=12;
+//        }
+//        let data=null;
+//        updateData();
+//        console.log(data);
+
+        //arrow function
+//        var getPi = () => 3.14;
+//        console.log(typeof getPi);
+//        document.addEventListener('click',function(){console.log(this)})
+//        document.addEventListener('click',() => console.log(this));
+//        var obj = {
+//            testFunc1 : function() {
+//                return document.addEventListener('click',() => console.log(this));
+//            }
+//        }
+//        obj.testFunc1();
+
+        //default parameters
+//
+//        var foo = function(a,b=2){
+//            console.log('a' + a + 'b' + b);
+//        }
+//        foo(2);
+//            var myhobbies = function(personId,...hobbies){
+//                console.log(Array.prototype.slice.call(arguments));
+//                console.log(hobbies);
+//                console.log(hobbies instanceof Array);
+//            }
+//            myhobbies(1,'2','3','4');
+//
+//            var loghobbies = new Function('...hobbies','return hobbies;')
+//            console.log(loghobbies('2','3','4'));
+
+        // new enhancement in object literal
+//            var id= 1,name="test123";
+//            var person = {id:2,name : "test345","toString"(){
+//                return id + name;
+//            }};
+//
+//            console.log(person["toString"]());
+
+//        var propertyName = "some";
+//        var propertyValue = "test123";
+//
+//        var person = {
+//            [propertyName] :propertyValue
+//        };
+//        console.log(person);
+
+        //for of loop
+        //var hobbies  =['a','b','c'];
+//        var hobbies = "hobbies";
+//        for (var hobby of hobbies){
+//            console.log(hobby);
+//        }
+
+        //template literals
+//        var pi=3.14;
+//        console.log(`pi value is ${pi}`);
+
+//        function processInvoice(segments,...values){
+//            console.log(segments);
+//            console.log(values);
+//        }
+//
+//        let invoicenum = '1350';
+//        let amount = '200';
+//
+//        processInvoice `Invoice:${invoicenum}for${amount}`;
+
+        //how to create symbol : in this case refernce will not be same
+//        let eventSymbol = Symbol('resizeevent');
+//        console.log(typeof eventSymbol);
+//        console.log(eventSymbol.toString());
+
+        //In this case reference will be same
+//        let s = Symbol.for('event');
+//        let s2 = Symbol.for('event');
+//        console.log(s===s2);
+
+//        let article  ={
+//            title: 'mytitle',
+//            [Symbol.for('article')] : 'Myarticle'};
+//
+//        let value = article[Symbol.for('article')];
+//        console.log(Symbol.for('article'));
+//        console.log(value)
+
+//        let article  ={
+//           title: 'mytitle',
+//            [Symbol.for('article')] : 'Myarticle'};
+//        console.log(Object.getOwnPropertySymbols(article));
+//        console.log(Object.getOwnPropertyNames(article));
+
+        //changing internal behaviour
+//        let Blog = function(){};
+//        let blog = new Blog();
+//
+//        console.log(blog.toString());
+//        console.log(Symbol.toStringTag)
+//        Blog.prototype[Symbol.toStringTag] = "blogclass";
+//        console.log(blog.toString());
+
+//        let values=[1,2,3];
+//        console.log([].concat(values));
+//
+//        values[Symbol.isConcatSpreadable] = false;
+//        console.log([].concat(values));
+
+//        let values = [8,12,16];
+//        let sum  = values + 100;
+//        console.log(sum);
+//
+//        values[Symbol.toPrimitive] = function(hint){
+//            console.log(hint);
+//            return 42;
+//        }
+//        let sum2 = values +100;
+//        console.log(sum2);
+
+//        let ids=[1,2,3];
+//        let it = ids[Symbol.iterator]();
+//        console.log(typeof ids[Symbol.iterator]);
+//        console.log(it.next());
+//        console.log(it.next());
+//        console.log(it.next());
+//        console.log(it.next());
+
+        //custom implementation of iterators
+//        let idMake = {
+//           [Symbol.iterator](fn,count){
+//            var init =0;
+//            return{
+//                next(){
+//
+//                    init++;
+//
+//                    if(init >=count){
+//
+//                        return {
+//                            done:true,
+//                            value:undefined
+//                        }
+//                    }
+//                    else{
+//
+//                        while(!fn(init)){
+//                            init++
+//                        }
+//                        return{
+//                            value:init,
+//                            done:false
+//                        }
+//                    }
+//                }
+//            }
+//            }
+//        };
+//
+//        function even(nextid){
+//            return nextid%2 ===0;
+//        }
+//
+//        function odd(nextid){
+//            return nextid%2 !=0
+//        }
+//
+//        let it = idMake[Symbol.iterator](even,10);
+//        console.log(it.next())
+//        let it2 = idMake[Symbol.iterator](odd,10);
+//        console.log(it2.next())
+
+        // Generators
+//        function* process(){
+//            yield 8000;
+//
+//            yield 8001;
+//        }
+//        let it = process();
+//        console.log(it.next())
+//        console.log(it.next())
+//        console.log(it.next())
+
+//        function* process(){
+//            let result = yield;
+//            console.log(`result is ${result}`)
+//        }
+//
+//        let it = process();
+//        it.next(); //compile
+//        it.next(200); //value return
+
+//        function* process(){
+//            let value = 4 * (yield);
+//            console.log(value);
+//        }
+//
+//        let it = process();
+//        it.next();
+//        it.next(10);
+//        function even(nextid){
+//            return nextid%2 ===0;
+//        }
+//        function* process(even){
+//            let value = yield;
+//            for(let i=0;i<5;i++){
+//                if(even(i)){
+//                    yield i;
+//                }
+//            }
+//        }
+//        let it = process(even);
+//        it.next();
+//        console.log(it.next());
+//        console.log(it.next());
+//        function* process(){
+//            yield 42;
+//            yield* [1,2,3];
+//        }
+//
+//        let it = process();
+//        console.log(it.next().value);
+//        console.log(it.next().value);
+//        console.log(it.next().value);
+
+        // we can throw exceptions from the yield statements
+//        function* process(){
+//            try{
+//                yield 8000;
+//                yield 8001;
+//                yield 8002;
+//            }
+//            catch(e){
+//                console.log(e);
+//            }
+//        }
+//        let it = process();
+//        console.log(it.next().value);
+//        console.log(it.throw('foo'));
+
+            //promises
+//            function doAsync(){
+//                let p = new Promise(function(resolve,reject){
+//                    console.log('in promise code');
+//                    setTimeout(function(){
+//                        console.log('rejecting');
+//                        reject();
+//                    },2000)
+//                });
+//                return p;
+//            }
+//
+//        let promise = doAsync();
+
+//        function doAsync(){
+//            let p = new Promise(function(resolve,reject){
+//                //console.log('in promise code');
+//                setTimeout(function(){
+//                    //console.log('resolving');
+//                    //resolve();
+//                    reject('some error');
+//                },2000)
+//            });
+//            return p;
+//        }
+
+        //doAsync().then(function(){console.log('fulfilled')},function(){console.log('rejected')})
+        //doAsync().catch(function(reason){console.log('Error' + reason)});
+
+
+//            let p1 = new Promise(function(resolve,reject){
+//                //console.log('in promise code');
+//                setTimeout(function(){
+//                    //console.log('resolving');
+//                    resolve('a');
+//                    //reject('some error');
+//                },1000)
+//            });
+//
+//            let p2 = new Promise(function(resolve,reject){
+//                //console.log('in promise code');
+//                setTimeout(function(){
+//                    //console.log('resolving');
+//                    //resolve('b');
+//                    reject('some error');
+//                },5000)
+//            });
+
+            //Promise.all([p1,p2]).then(function(value){console.log(value)},function(reason){console.log('nope')})
+            //Promise.race([p1,p2]).then(function(value){console.log(value)},function(reason){console.log('nope')})
+//        function doAsync(){
+//            let p = new Promise(function(resolve,reject){
+//                setTimeout(function(){
+//                    resolve('a');
+//                },2000)
+//            });
+//            return p;
+//        }
+//
+//        doAsync().then(function(value){
+//            console.log('fulfilled' + value);
+//            return 'for sure';
+//        }).then(function(value){
+//            console.log('really' + value);
+//        })
+//
+//         class creation
+//        class Person{
+//            constructor(){
+//                console.log('parent constructor called');
+//                //this.name = name;//property declaration
+//            }
+//            showId(){
+//                console.log('parent created class');
+//            }
+//        }
+//
+//        class child extends Person{
+//
+//            constructor(){
+//                super()
+//                console.log('child constructor called');
+//            }
+//
+//            showId(){
+//                super.showId();
+//                console.log('child created class');
+//            }
+//        }
+//        var c = new child();
+//        console.log(c.showId())
+//
+//        class Project{
+//            static getDefault(){
+//                return 0;
+//            }
+//        }
+
+        //console.log(Project.getDefault());
+        //var p = new Person();
+        //p.showId();
+        //console.log(Person.prototype);
+        //console.log(p.showId() == Person.prototype.showId())
+
+//        function foo(who){this.me = who;}
+//
+//        foo.prototype.identify = function(){
+//            return "this me" + this.me;
+//        }
+//        function bar(who){
+//            foo.call(this,who);
+//        }
+//        bar.prototype = Object.create(foo.prototype);
+//
+//        bar.prototype.speak = function(){
+//            console.log('calling identify' + this.identify());
+//        }
+//
+//        var b1 = new bar('b1');
+//        var b2 = new bar('b2');
+//
+//        b1.speak();
+//        b2.speak();
+
+        //creating singleton class using revealing module pattern
+//        var x = (function(){
+//            var instance;
+//
+//            function createInstance(){
+//                return {};
+//            }
+//
+//            return{
+//                getInstance : function(){
+//                    if(!instance){
+//                        createInstance();
+//                    }
+//                    return instance;
+//                }
+//            }
+//        })();
+
+        //iterator function that will return 10 number as square
+
+
+//                let idMake =  {
+//                    [Symbol.iterator](fn,count){
+//                        var init = 0,number;
+//                        return{
+//                            next(){
+//                                if(init>=count){
+//                                    return{
+//                                        done:true,
+//                                        value:undefined
+//                                    }
+//                                }else{
+//                                    init++;
+//                                    number = fn(init);
+//                                    return{
+//                                        value:number,
+//                                        done:false
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                function square(num){
+//                    return num*num;
+//                }
+//
+//                let it = idMake[Symbol.iterator](square,10);
+//                console.log(it.next());
+//                console.log(it.next());
+//                console.log(it.next());
+
+            //Generator function that will return 10 number as square
+
+//                function square(num){
+//                    return num*num;
+//                }
+//
+//                function* squareGenerator(fn,count){
+//                    for(let i=1;i<count;i++){
+//                        yield  fn(i);
+//                    }
+//                }
+//                let it = squareGenerator(square,10);
+//                console.log(it.next());
+//                console.log(it.next());
+//                console.log(it.next());
+
+//            function square(){
+//                console.log(this);
+//            }
+//            square();
+
+    //        var square = () => {
+    //            console.log(this);
+    //        }
+    //        square();
+
+
+
+    </script>
+</body>
+</html>
