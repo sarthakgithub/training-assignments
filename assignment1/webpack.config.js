@@ -7,12 +7,15 @@ module.exports = {
 	devtool: 'inline-source-map',
 	output: {
 		path : path.resolve(__dirname,'public'),
+
 		filename : 'bundle.js'
 	},
 	watch : true,
 	devServer : {
 		inline: true,
-        port: 8080
+        port: 8080,
+		historyApiFallback: true
+
 	},
 	resolve : {
 		extensions : ['.js','.jsx','.json']

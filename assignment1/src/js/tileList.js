@@ -9,12 +9,14 @@ class TileList extends React.Component {
 	}
 	render(){
 		return(
-			<div className="tiles">
-				<img className="tile" alt={`${this.props.show.title}`} src={`/src/images/image${this.props.show.id}.jpg`} />
+			<Link to={`/details/${this.props.show.id}`}>
+			<div className="tile">
+				<img className="imgTile" alt={`${this.props.show.title}`} src={`/src/images/image${this.props.show.id}.jpg`} />
 				<div>
 					<h3>{this.props.show.title}</h3>
 				</div>
 			</div>
+			</Link>
 		)
 	}
 }

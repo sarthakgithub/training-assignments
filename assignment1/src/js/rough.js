@@ -8,3 +8,11 @@ import type {Match} from 'react-router-dom'
 	}}
 />
 
+.filter(show => `${show.title}`.indexOf(this.state.searchTerm) >=0)
+
+{data.shows
+
+		.map(show => <TileList key={show.id} show={show} />
+		)}
+
+--inline --content-base . --history-api-fallback
