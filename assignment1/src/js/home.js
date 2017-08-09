@@ -3,14 +3,15 @@ import {render} from 'react-dom'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import {IndexRoute} from 'react-router'
 import TileList from './tileList.js'
-import data from '../json/data.json'
 import Search from './search.js'
+import {getData} from '../dataapi/api.js'
 
 class Home extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			searchTerm : ''
+			searchTerm : '',
+			shows:[]
 		}	
 		this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
 		this.showAllTiles = this.showAllTiles.bind(this);
@@ -25,6 +26,14 @@ class Home extends React.Component{
 			searchTerm : ''
 		})
 	}
+	componentDidMount(){
+		getData().then(shows => {
+			this.setState({shows})
+
+		},error => {
+			console.log(error)
+		})
+	}
 	render(){
 		return(
 			<div>
@@ -37,9 +46,10 @@ class Home extends React.Component{
 					}
 
 					<Link to={`/search/${this.state.searchTerm}`} className="searchOk"><input type="button" value="OK"/></Link>
-					{data.shows
-						.map(show => <TileList key={show.id} show={show} />
-					)}
+
+					{
+						this.state.shows.map(show => <TileList key={show.id} show={show} />)
+					}
 
 				</div>
 

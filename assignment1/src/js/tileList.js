@@ -11,7 +11,7 @@ class TileList extends React.Component {
 		return(
 			<Link to={`/details/${this.props.show.id}`}>
 			<div className="tile">
-				<img className="imgTile" alt={`${this.props.show.title}`} src={`/src/images/image${this.props.show.id}.jpg`} />
+				<img className="imgTile" alt={this.props.show.title} src={this.props.show.imagepath} />
 				<div>
 					<h3>{this.props.show.title}</h3>
 				</div>

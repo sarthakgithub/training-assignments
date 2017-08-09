@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	context: __dirname,
@@ -7,19 +8,23 @@ module.exports = {
 	devtool: 'inline-source-map',
 	output: {
 		path : path.resolve(__dirname,'public'),
-
 		filename : 'bundle.js'
 	},
 	watch : true,
 	devServer : {
 		inline: true,
-        port: 8080,
+		port: 8080,
+		hot: true,
 		historyApiFallback: true
-
 	},
 	resolve : {
 		extensions : ['.js','.jsx','.json']
 	},
+	plugins : [
+		new CopyWebpackPlugin([{ from: path.resolve('src/assets/'), to: 'assets' }]),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin()
+	],
 	module : {
 		rules : [
 			{

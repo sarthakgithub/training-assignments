@@ -49,10 +49,61 @@ li a:hover {
 .glyphicon-remove{
     position: absolute;
     left: 20%;
-    top: 25%;
+    top:1%;
 }
 .searchOk{
     display: block;
     margin-top:5px;
     margin-left: 20px;
+}
+.title.form-control{
+    width:20%;
+}
+.editable-form{
+
+    margin:0 auto;
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.description{
+    width:40%;
+    margin:0 auto;
+    display: block;
+    font-size: 20px;
+    padding:15px;
+}
+.image-description{
+    display: inline-block;
+    padding:10px;
+}
+.edit{
+    padding:10px;
+}
+.form-parent{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+.editField{
+    padding:10px;
+}
+.field{
+    padding-bottom: 5px;
+}
+.btn.btn-default{
+    margin:10px;
+}
+.image-info{
+    border:1px solid black;
 }

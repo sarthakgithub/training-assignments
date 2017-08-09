@@ -24,7 +24,7 @@ class App extends React.Component{
                         <Redirect exact from="/" to="/home"/>
                         <Route  path="/home" component={Home}/>
                         <Route  path="/search/:id" component={Search}/>
-                        <Route  path="/details/:imageId" component={TileForm}/>
+                        <Route  path="/details/:id" component={TileForm}/>
                     </Switch>
                 </div>
 

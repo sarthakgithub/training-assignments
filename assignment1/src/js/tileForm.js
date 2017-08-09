@@ -1,37 +1,103 @@
 import React from 'react'
-import {render} from 'react-dom'
-import {BrowserRouter as Router, Route, Link} from "react-router-dom"
-import {IndexRoute} from 'react-router'
+import axios from 'axios'
+import { getData, getVisibleTiles } from '../dataapi/api.js'
 
-class TileForm extends React.Component{
-    constructor(props){
-        super(props)
-        this.editFields = this.editFields.bind(this)
+class TileForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onEditToggle = this.onEditToggle.bind(this);
         this.state = {
-            edit:false
+            edit: false,
+            shows: [],
+            searchTerm: "",
+            filteredTile:''
         }
     }
-    editFields(){
+    onEditToggle() {
         this.setState({
-            edit: true
+            edit: !this.state.edit
         })
     }
-    render(){
-        return(
+
+    componentDidMount() {
+
+        getData().then(shows => {
+            let filteredTile = getVisibleTiles(shows,this.props.match.params.id);
+            this.setState({ shows : shows, searchTerm: this.props.match.params.id,filteredTile:filteredTile[0]})
+        }, error => {
+            console.log(error)
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ searchTerm: nextProps.match.params.id })
+    }
+
+    render() {
+        return (
             <div>
-                <form>
-                    <div className="form-group">
-                        <h3> Showing image{this.props.match.params.imageId} Data</h3>
-                        <label for="title">Title</label>
-                        <input type="text" classame="title form-control" id="title" />
-                        <input type="button" value="edit" onClick={this.editFields}/>
-                        {this.state.edit ? <div><input type="button" value="save"/> <input type="button" value="cancel"/></div> : ''}
+                {
+                (this.state.edit ? <InfoEdit onEditToggle={this.onEditToggle} tile={this.state.filteredTile} /> : <Info onEditToggle={this.onEditToggle} tile={this.state.filteredTile} />)
+                }
+            </div>
+        )
+    }
+
+}
+
+const Info = ({ tile,onEditToggle }) => {
+    return (
+        <div className="description form-group">
+            <div className="image-info">
+                <div className="image-description">Image Title</div>
+                <div className="image-description">{tile.title}</div>
+                <br/>
+                <div className="image-description">Image Name</div>
+                <div className="image-description">{tile.name}</div>
+            </div>
+
+            <div className="edit">
+                <button type="button" value="edit" onClick={onEditToggle}>Edit</button>
+            </div>
+        </div>
+    )
+}
+
+class InfoEdit extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state ={
+            tile:{}
+        }
+        this.onChange = this.onChange.bind(this)
+    }
+
+    componentDidMount() {
+        this.setState({ tile: this.props.tile })
+    }
+    onChange(e){
+        let tile ={
+            "title":e.target.value
+        }
+        this.setState({tile:tile})
+    }
+    render() {
+        return (
+            <div className="form-parent form-group">
+                <form className="editable-form form-horizontal">
+                    <div className="editField">
+                        <div className="field">Image Title editable</div>
+                        <input type="text" className="field" name="title" value={this.state.tile.title} onChange= {this.onChange}/>
+
+                        <div className="field">Image Name editable</div>
+                        <input type="text" className="field" name="name" value={this.state.tile.name} onChange= {this.onChange}/>
                     </div>
 
+                    <button type="button"  value="save" className="btn btn-default">SAVE</button>
+                    <button type="button"  value="cancel" className="btn btn-default" onClick={this.props.onEditToggle}> CANCEL </button>
                 </form>
             </div>
         )
     }
 }
-
 export default TileForm

@@ -3,19 +3,30 @@ import {render} from 'react-dom'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import {IndexRoute} from 'react-router'
 import TileList from './tileList.js'
-import data from '../json/data.json'
+import {getData} from '../dataapi/api.js'
 
 class Search extends  React.Component{
     constructor(props){
         super(props)
+        this.state = {
+            shows : []
+        }
+    }
+    componentDidMount(){
+        getData().then(shows => {
+            this.setState({shows})
+
+        },error => {
+            console.log(error)
+        })
     }
     render(){
         return(
             <div className="searched">
-                {data.shows
-                    .filter(show => `${show.title}`.indexOf(this.props.match.params.id) >=0)
-                    .map(show => <TileList key={show.id} show={show} />
-                )}
+                {
+                    this.state.shows.filter(show => `${show.title}`.indexOf(this.props.match.params.id) >=0)
+                    .map(show => <TileList key={show.id} show={show} />)
+                }
             </div>
         )
     }
