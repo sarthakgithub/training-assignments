@@ -1,16 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	context: __dirname,
-	entry: './src/js/index.js',
+	entry: './src/components/index.js',
 	devtool: 'inline-source-map',
 	output: {
 		path : path.resolve(__dirname,'public'),
 		filename : 'bundle.js'
 	},
-	watch : true,
 	devServer : {
 		inline: true,
 		port: 8080,
@@ -21,9 +19,10 @@ module.exports = {
 		extensions : ['.js','.jsx','.json']
 	},
 	plugins : [
-		new CopyWebpackPlugin([{ from: path.resolve('src/assets/'), to: 'assets' }]),
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NamedModulesPlugin()
+		new webpack.optimize.UglifyJsPlugin({
+			minimize: true
+		})
 	],
 	module : {
 		rules : [

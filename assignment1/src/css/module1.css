@@ -1,3 +1,13 @@
+body{
+    background: lightgray;
+    //background: green;
+}
+.headingTitle{
+    text-align: center;
+}
+.search{
+    margin: 0 auto;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -8,8 +18,7 @@ ul {
 }
 
 li {
-    display: inline-block;
-    width: 32.7%;
+    text-align: center;
 }
 
 li a {
@@ -33,34 +42,42 @@ li a:hover {
 	padding: 10px;
 }
 .imgTile{
-    width: 100%;
+    width: 90%;
     display: inline-block;
+    height: 220px;
 }
-
+.imgTitle{
+    color: #fff;
+    font-weight: 500;
+}
 .search.form-control{
-    margin: 10px 0 0 20px;
+    //margin: 10px 0 0 20px;
     width: 20%;
+    margin: 0 auto;
 }
 
-.searchBox{
+.parentBox{
     position: relative;
+    width: 70%;
+    margin: 0 auto;
 }
 
 .glyphicon-remove{
     position: absolute;
-    left: 20%;
-    top:1%;
+    top: 7.5%;
+    left: 58%;
 }
 .searchOk{
     display: block;
-    margin-top:5px;
-    margin-left: 20px;
+    /*margin-top:5px;*/
+    /*margin-left: 20px;*/
+    margin-left: 61%;
+    margin-top: -32px;
 }
 .title.form-control{
     width:20%;
 }
 .editable-form{
-
     margin:0 auto;
     display: inline-block;
     font-size: 20px;
@@ -71,14 +88,15 @@ li a:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%,-50%);
 }
 .description{
     width:40%;
-    margin:0 auto;
+    margin:15px auto;
     display: block;
     font-size: 20px;
     padding:15px;
+    border: 1px solid black;
 }
 .image-description{
     display: inline-block;
@@ -99,11 +117,40 @@ li a:hover {
     padding:10px;
 }
 .field{
-    padding-bottom: 5px;
+    width:50%;
 }
 .btn.btn-default{
     margin:10px;
 }
 .image-info{
     border:1px solid black;
+}
+.edit{
+    padding: 5px 5px;
+    font-size: 18px;
+    line-height: 1.5;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.divTable
+{
+    display:  table;
+    width:auto;
+    background-color:#eee;
+    border:1px solid  #666666;
+    border-spacing:5px;
+}
+
+.divRow
+{
+    display:table-row;
+    width:auto;
+}
+
+.divCell
+{
+    float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:200px;
+    background-color:#ccc;
 }
